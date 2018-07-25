@@ -39,6 +39,8 @@ var platforms;
 var player;
 var score = 0;
 var scoreText;
+var instructionsText;
+
 
 function create ()
 {
@@ -95,13 +97,19 @@ function create ()
   this.physics.add.overlap(player, stars, collectStar, null, this)
 
   //Create scoreboard
-  scoreText = this.add.text(16, 16, 'score: 0', { fontSize: '32px', fill: '#000' });
+  scoreText = this.add.text(16, 16, 'Score: 0', { fontSize: '32px', fill: '#000' });
 
   //Create Bombs
   bombs = this.physics.add.group();
 
   this.physics.add.collider(bombs, platforms);
   this.physics.add.collider(player, bombs, hitBomb, null, this);
+
+  //display instructions
+  instructionsText = this.add.text(16, 50, "Press 'Left Arrow' to go Left", {fontSize: '16px', fill: '#000' }),
+                     this.add.text(16, 70, "Press 'Right Arrow' to go Right", {fontSize: '16px', fill: '#000' }),
+                     this.add.text(16, 90, "Press 'Spacebar' to Jump", {fontSize: '16px', fill: '#000' })
+
 }
 
 
@@ -155,6 +163,8 @@ function collectStar (player, star)
   }
 }
 
+// var restartGame;  
+
 function hitBomb (player, bomb)
 {
     this.physics.pause();
@@ -164,6 +174,15 @@ function hitBomb (player, bomb)
     player.anims.play('turn');
 
     gameOver = true;
+
+    this.add.text(220, 260, 'GAMEOVER', { fontSize: '72px', fill: '#000' });
+    // restartGame = this.add.text(250, 325, 'RESTART',{ fontSize: '55px', fill: '#000' });
+   
+
 }
+
+
+
+
 
 

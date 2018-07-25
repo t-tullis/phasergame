@@ -2,3 +2,8 @@ h1{
   color: red;
   text-align: center;
 }
+
+canvas{
+  margin: auto;
+  display: block;
+}
